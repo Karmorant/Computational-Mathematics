@@ -15,7 +15,7 @@ union f64_union
 double FX_1(double x)
 {
         double res;
-        return res = /* sin(pow(x, 2)); */ /* cos(sin(x)); */ /* exp(sin(cos(x))); */ /* log(x + 3); */ pow(x + 3, 0.5);
+        return res = /*sin(pow(x, 2));*/ /* cos(sin(x));*/ /* exp(sin(cos(x))); */ /* log(x + 3); */  pow(x + 3, 0.5); 
 }
 
 
@@ -28,8 +28,8 @@ int main()
         FILE *fp_D = fopen("data_D.txt", "w");
         FILE *fp_E = fopen("data_E.txt", "w");
 
-        double x_0 = 1;
-        double fx_0 = /* 2 * cos(x_0) * x_0; */ /* -sin(sin(x_0)) * cos(x_0); */ /* -exp(sin(cos(x_0))) * cos(cos(x_0)) * sin(x_0); */ /* pow(x_0 + 3, -1); */  0.5 * pow(x_0 + 3, -0.5);
+        double x_0 = M_PI/6;
+        double fx_0 = /* 2 * cos(x_0) * x_0; */  /*-sin(sin(x_0)) * cos(x_0); */  /* -exp(sin(cos(x_0))) * cos(cos(x_0)) * sin(x_0); */ /* pow(x_0 + 3, -1); */  0.5 * pow(x_0 + 3, -0.5);
 
         a.i = 0x3FF5555555555555; // 4/3
         b.i = 0x3FD5555555555555; // 1/3
@@ -52,11 +52,11 @@ int main()
                 double fd = ((a.d) * ((FX_1(x_0 + h) - FX_1(x_0 - h)) / (2 * h))) - ((b.d) * ((FX_1(x_0 + 2 * h) - FX_1(x_0 - 2 * h)) / (4 * h)));
                 double fe = ((c.d) * ((FX_1(x_0 + h) - FX_1(x_0 - h)) / (2 * h))) - ((d.d) * ((FX_1(x_0 + 2 * h) - FX_1(x_0 - 2 * h)) / (4 * h))) + ((e.d) * ((FX_1(x_0 + 3 * h) - FX_1(x_0 - 3 * h)) / (6 * h)));
 
-                fprintf(fp_A, "%d %f\n", x, fabs(fx_0 - fa));
-                fprintf(fp_B, "%d %f\n", x, fabs(fx_0 - fb));
-                fprintf(fp_C, "%d %f\n", x, fabs(fx_0 - fc));
-                fprintf(fp_D, "%d %f\n", x, fabs(fx_0 - fd));
-                fprintf(fp_E, "%d %f\n", x, fabs(fx_0 - fe));
+                fprintf(fp_A, "%d %.23f\n", x, fabs(fx_0 - fa));
+                fprintf(fp_B, "%d %.23f\n", x, fabs(fx_0 - fb));
+                fprintf(fp_C, "%d %.23f\n", x, fabs(fx_0 - fc));
+                fprintf(fp_D, "%d %.23f\n", x, fabs(fx_0 - fd));
+                fprintf(fp_E, "%d %.23f\n", x, fabs(fx_0 - fe));
         }
 
         fclose(fp_A);
