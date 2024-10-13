@@ -1,0 +1,12 @@
+#!/bin/gnuplot -persistent
+
+set title 'Zeydel'
+
+set xlabel 'N'
+set ylabel '|r|'
+
+
+
+plot 'Zeydel_data.txt' linecolor rgb 'red' with lines title 'Zeydel',\
+
+	 

@@ -1,0 +1,10 @@
+#!/bin/gnuplot -persistent
+
+set title 'SOR'
+
+set xlabel 'N'
+set ylabel '|r|'
+
+
+
+plot 'SOR_data.txt' linecolor rgb 'red' with lines title 'SOR',\

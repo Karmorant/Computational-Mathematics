@@ -1,0 +1,12 @@
+#!/bin/gnuplot -persistent
+
+set title 'Jacobi'
+
+set xlabel 'N'
+set ylabel '|r|'
+
+
+
+plot 'Jacobi_data.txt' linecolor rgb 'red' with lines title 'Jacobi',\
+
+	 
