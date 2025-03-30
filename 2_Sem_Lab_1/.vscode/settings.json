@@ -1,0 +1,6 @@
+{
+        "files.associations": {
+                "gsl_matrix.h": "c",
+                "gsl_vector.h": "c"
+        }
+}
