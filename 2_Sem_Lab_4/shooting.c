@@ -6,10 +6,10 @@
 #define MAX_ITER 100
 #define TOL 1e-6
 
-// Объявление функции newton_method из второго файла
+
 void newton_method(double h, double* x, double* y);
 
-// Функция правой части ОДУ y'' = f(x, y)
+
 double f_shooting(double x, double y) {
     return x * sqrt(y);
 }
@@ -106,13 +106,13 @@ int main() {
         x[i] = x[i-1] + h;
     }
     
-    // Решение методом стрельбы
+
     shooting_method(h, x, y_shooting);
     
-    // Решение методом Ньютона
+
     newton_method(h, x, y_newton);
     
-    // Вывод результатов
+
     printf("x\tShooting\tNewton\tDifference\n");
     for (int i = 0; i < N; i += N/10) {
         printf("%.3f\t%.6f\t%.6f\t%.6f\n", 

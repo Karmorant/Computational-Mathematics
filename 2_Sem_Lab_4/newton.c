@@ -16,13 +16,11 @@ void newton_method(double h, double* x, double* y) {
     int iter = 0;
     double error;
     
-    // Начальное приближение
     for (int i = 0; i < N; i++) {
         y_prev[i] = 2.0 * x[i];
     }
     
     do {
-        // Построение трехдиагональной системы
         for (int i = 1; i < N-1; i++) {
             double df_dy = -0.5 * x[i] / sqrt(y_prev[i]);
             
@@ -32,7 +30,6 @@ void newton_method(double h, double* x, double* y) {
             d[i] = f_newton(x[i], y_prev[i]) - df_dy * y_prev[i];
         }
         
-        // Граничные условия
         b[0] = 1.0;
         c[0] = 0.0;
         d[0] = 0.0;
@@ -41,7 +38,6 @@ void newton_method(double h, double* x, double* y) {
         b[N-1] = 1.0;
         d[N-1] = 2.0;
         
-        // Метод прогонки
         for (int i = 1; i < N; i++) {
             double m = a[i] / b[i-1];
             b[i] = b[i] - m * c[i-1];
@@ -53,7 +49,7 @@ void newton_method(double h, double* x, double* y) {
             y_new[i] = (d[i] - c[i] * y_new[i+1]) / b[i];
         }
         
-        // Проверка сходимости
+        
         error = 0.0;
         for (int i = 0; i < N; i++) {
             error += fabs(y_new[i] - y_prev[i]);
@@ -64,7 +60,7 @@ void newton_method(double h, double* x, double* y) {
         iter++;
     } while (iter < MAX_ITER && error > TOL);
     
-    // Сохраняем результат
+    
     for (int i = 0; i < N; i++) {
         y[i] = y_new[i];
     }
