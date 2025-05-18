@@ -9,7 +9,6 @@
 #define COURANT_FACTOR 0.8
 #define PI 3.141592653589793
 
-// Начальное условие
 void start_condition(int n, double* x, double* u) {
     for (int i = 0; i < n; i++) {
         u[i] = sin(4 * PI * x[i] / DOMAIN_LENGTH);
@@ -70,7 +69,6 @@ void lax_wendroff_method(int n, double* u, double speed, double dt, double dx) {
     free(u_new);
 }
 
-// Сохранение результатов в файл
 void save_solution(const char* filename, int n, double* x, double* u) {
     FILE* fp = fopen(filename, "w");
     if (!fp) {
@@ -83,7 +81,6 @@ void save_solution(const char* filename, int n, double* x, double* u) {
     fclose(fp);
 }
 
-// Построение графиков с помощью gnuplot
 void plot_results(int n) {
     FILE* gp = popen("gnuplot -persistent", "w");
     if (!gp) {
@@ -102,7 +99,6 @@ void plot_results(int n) {
     pclose(gp);
 }
 
-// Анализ сходимости
 void convergence_analysis() {
     int node_counts[] = {40, 80, 160, 320, 640, 1280};
     int num_tests = sizeof(node_counts)/sizeof(node_counts[0]);
@@ -157,7 +153,6 @@ void convergence_analysis() {
     }
     fclose(fp);
     
-    // Построение графика сходимости
     FILE* gp = popen("gnuplot -persistent", "w");
     if (!gp) {
         perror("Failed to open gnuplot");
